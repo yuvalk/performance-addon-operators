@@ -234,6 +234,11 @@ gosec:
 	@echo "Running gosec"
 	hack/gosec.sh
 
+.PHONY: gosec-ok-to-fail
+gosec-ok-to-fail:
+	@echo "Running gosec, ok to fail"
+	-hack/gosec.sh
+
 .PHONY: gofmt
 gofmt:
 	@echo "Running gofmt"
@@ -255,7 +260,7 @@ generate: deps-update gofmt manifests generate-code generate-latest-dev-csv gene
 	@echo
 
 .PHONY: verify
-verify: golint govet generate
+verify: golint govet gosec-ok-to-fail generate
 	@echo "Verifying that all code is committed after updating deps and formatting and generating code"
 	hack/verify-generated.sh
 
