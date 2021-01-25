@@ -229,6 +229,11 @@ operator-upgrade-tests:
 unittests:
 	hack/unittests.sh
 
+.PHONY: gosec
+gosec:
+	@echo "Running gosec"
+	hack/gosec.sh
+
 .PHONY: gofmt
 gofmt:
 	@echo "Running gofmt"
